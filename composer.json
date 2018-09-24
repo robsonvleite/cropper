@@ -1,0 +1,29 @@
+{
+  "name": "coffeecode/cropper",
+  "description": "It is a easy and simple PHP image cropper and cache thumb manager",
+  "keywords": [
+    "CoffeeCode",
+    "Upload",
+    "image thumb",
+    "image crop",
+    "image cache"
+  ],
+  "homepage": "http://www.upinside.com.br",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robson V. Leite",
+      "email": "cursos@upinside.com.br",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "ext-gd": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "CoffeeCode\\Cropper\\": "src"
+    }
+  }
+}
