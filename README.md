@@ -45,9 +45,9 @@ composer require coffeecode/cropper
 
 ## Documentation
 
-###### There are only 2 methods to do all the work. You just need to call ***make*** to create or use thumbnails of any size, or ***flush*** to free the cache of a file or the entire folder. CoffeeCode Cropper works like this:
+###### They are just two methods to do all the work. You just need to call ***make*** to create or use thumbnails of any size, or ***flush*** to free the cache of a file or the entire folder. CoffeeCode Cropper works like this:
 
-São apenas 2 métodos para fazer todo o trabalho. Você só precisa chamar o ***make*** para criar ou usar miniaturas de qualquer tamanho, ou o ***flush*** para liberar o cache de um arquivo ou da pasta toda. CoffeeCode Cropper funciona assim:
+São apenas dois métodos para fazer todo o trabalho. Você só precisa chamar o ***make*** para criar ou usar miniaturas de qualquer tamanho, ou o ***flush*** para liberar o cache de um arquivo ou da pasta toda. CoffeeCode Cropper funciona assim:
 
 #### Create thumbnails:
 
