@@ -12,13 +12,11 @@
 
 Cropper é um componente que simplifica a criação de miniaturas de imagens JPG e PNG com um motor de cache. O Cropper CC cria versões de suas imagens para cada dimensão necessária na aplicação com zero de complexidade.
 
-
 ## About CoffeeCode
 
 ###### CoffeeCode is a set of small and optimized PHP components for common tasks. Held by Robson V. Leite and the UpInside team. With them you perform routine tasks with fewer lines, writing less and doing much more.
 
 CoffeeCode é um conjunto de pequenos e otimizados componentes PHP para tarefas comuns. Mantido por Robson V. Leite e a equipe UpInside. Com eles você executa tarefas rotineiras com poucas linhas, escrevendo menos e fazendo muito mais.
-
 
 ### Highlights
 
@@ -27,7 +25,6 @@ CoffeeCode é um conjunto de pequenos e otimizados componentes PHP para tarefas 
 - Media Control by Filename (Contrôle de mídias por nome do arquivo)
 - Cache cleanup by filename and total (Limpeza de cache por nome de arquivo e total)
 - Composer ready and PSR-2 compliant (Pronto para o composer e compatível com PSR-2)
-
 
 ## Installation
 
@@ -61,7 +58,6 @@ echo "<img src='{$c->make("images/image.jpg", 500)}' alt='Happy Coffee' title='H
 echo "<img src='{$c->make("images/image.jpg", 500, 300)}' alt='Happy Coffee' title='Happy Coffee'>";
 ```
 
-
 #### Clear cache
 
 ```php
@@ -94,7 +90,6 @@ Thank you
 - [Robson V. Leite](https://github.com/robsonvleite) (Developer)
 - [UpInside Treinamentos](https://github.com/upinside) (Team)
 - [All Contributors](https://github.com/robsonvleite/cropper/contributors) (This Rock)
-
 
 ## License
 
