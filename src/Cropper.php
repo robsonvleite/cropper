@@ -8,7 +8,7 @@ namespace CoffeeCode\Cropper;
  * @author Robson V. Leite <https://github.com/robsonvleite>
  * @package CoffeeCode\Cropper
  */
-class Thumb
+class Cropper
 {
     /** @var string */
     private $cachePath;
@@ -36,14 +36,24 @@ class Thumb
     private static $allowedExt = ['image/jpeg', "image/png"];
 
     /**
+     * Cropper construct and cache patch
+     *
      * @param string $cachePath
      * @param int $jpgQuality
      * @param int $pngCompressor
+     * @return string
      */
     public function __construct(string $cachePath, int $jpgQuality = 75, int $pngCompressor = 5)
     {
         $this->cachePath = $cachePath;
         $this->cacheSize = [$jpgQuality, $pngCompressor];
+
+        if (!file_exists($this->cachePath) || !is_dir($this->cachePath)) {
+            if (!mkdir($this->cachePath, 0755)) {
+                return "Could not create cache folder";
+            }
+        }
+        return $this;
     }
 
     /**
@@ -53,27 +63,21 @@ class Thumb
      * @param int $width
      * @param int|null $height
      * @return string
-     * @throws \Exception
      */
     function make(string $imagePath, int $width, int $height = null): ?string
     {
         if (!file_exists($imagePath)) {
-            throw new \Exception("Image not found");
+            return "Image not found";
         }
 
         $this->imagePath = $imagePath;
         $this->imageMime = mime_content_type($this->imagePath);
         $this->imageInfo = pathinfo($this->imagePath);
-        $this->imageName = md5($this->imageInfo['basename']) . hash("crc32","{$width}{$height}") . ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
+        $this->imageName = hash("crc32", $this->imageInfo['basename']) . hash("crc32",
+                "{$width}{$height}") . ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
 
         if (!in_array($this->imageMime, self::$allowedExt)) {
-            throw new \Exception("Not a valid JPG or PNG image");
-        }
-
-        if (!file_exists($this->cachePath) || !is_dir($this->cachePath)) {
-            if (!mkdir($this->cachePath, 0755)) {
-                throw new \Exception("Could not create cache folder");
-            }
+            return "Not a valid JPG or PNG image";
         }
 
         if (file_exists("{$this->cachePath}/{$this->imageName}") && is_file("{$this->cachePath}/{$this->imageName}")) {
