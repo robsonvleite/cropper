@@ -49,7 +49,7 @@ composer require coffeecode/cropper
 
 São apenas dois métodos para fazer todo o trabalho. Você só precisa chamar o ***make*** para criar ou usar miniaturas de qualquer tamanho, ou o ***flush*** para liberar o cache de um arquivo ou da pasta toda. CoffeeCode Cropper funciona assim:
 
-#### Create thumbnails:
+#### Create thumbnails
 
 ```php
 <?php
