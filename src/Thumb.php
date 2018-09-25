@@ -55,7 +55,7 @@ class Thumb
      * @return string
      * @throws \Exception
      */
-    function make(string $imagePath, int $width, int $height = null): string
+    function make(string $imagePath, int $width, int $height = null): ?string
     {
         if (!file_exists($imagePath)) {
             throw new \Exception("Image not found");
@@ -104,6 +104,8 @@ class Thumb
         if ($this->imageMime == "image/png") {
             return $this->fromPng($width, $height, $src_x, $src_y, $src_w, $src_h);
         }
+
+        return null;
     }
 
     /**
@@ -121,7 +123,6 @@ class Thumb
         foreach ($scan as $file) {
             $file = "{$this->cachePath}/{$file}";
             if ($imageName && strpos($file, $name) && is_file($file)) {
-                echo "clear {$file}<br>";
                 unlink($file);
             }
 
