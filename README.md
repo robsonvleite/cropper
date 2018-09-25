@@ -57,8 +57,8 @@ require __DIR__ . "/../src/Cropper.php";
 
 $c = new \CoffeeCode\Cropper\Cropper("patch/to/cache");
 
-echo "<img src='{$c->make("images/image.jpg", 500)}' alt='Happy Coffe' title='Happy Coffe'>";
-echo "<img src='{$c->make("images/image.jpg", 500, 300)}' alt='Happy Coffe' title='Happy Coffe'>";
+echo "<img src='{$c->make("images/image.jpg", 500)}' alt='Happy Coffee' title='Happy Coffee'>";
+echo "<img src='{$c->make("images/image.jpg", 500, 300)}' alt='Happy Coffee' title='Happy Coffee'>";
 ```
 
 
