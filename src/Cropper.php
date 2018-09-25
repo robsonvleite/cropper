@@ -122,7 +122,7 @@ class Cropper
     public function flush(string $imageName = null): void
     {
         $scan = scandir($this->cachePath);
-        $name = ($imageName ? md5(pathinfo($imageName)['basename']) : null);
+        $name = ($imageName ? hash("crc32", pathinfo($imageName)['basename']) : null);
 
         foreach ($scan as $file) {
             $file = "{$this->cachePath}/{$file}";
