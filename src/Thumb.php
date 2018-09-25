@@ -64,7 +64,7 @@ class Thumb
         $this->imagePath = $imagePath;
         $this->imageMime = mime_content_type($this->imagePath);
         $this->imageInfo = pathinfo($this->imagePath);
-        $this->imageName = md5($this->imageInfo['basename']) . "x{$width}{$height}" . ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
+        $this->imageName = md5($this->imageInfo['basename']) . hash("crc32","{$width}{$height}") . ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
 
         if (!in_array($this->imageMime, self::$allowedExt)) {
             throw new \Exception("Not a valid JPG or PNG image");
