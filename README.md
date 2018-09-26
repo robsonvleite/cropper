@@ -4,7 +4,7 @@
 [![Source Code](http://img.shields.io/badge/source-coffeecode/cropper-blue.svg?style=flat-square)](https://github.com/robsonvleite/cropper)
 [![Latest Version](https://img.shields.io/github/release/robsonvleite/cropper.svg?style=flat-square)](https://github.com/robsonvleite/cropper/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Build Status](https://scrutinizer-ci.com/g/robsonvleite/cropper/badges/build.png?b=master)](https://scrutinizer-ci.com/g/robsonvleite/cropper/build-status/master)
+[![Build Status](https://scrutinizer-ci.com/g/robsonvleite/cropper/badges/build.png?b=master&style=flat-square)](https://scrutinizer-ci.com/g/robsonvleite/cropper/build-status/master)
 [![Quality Score](https://img.shields.io/scrutinizer/g/robsonvleite/cropper.svg?style=flat-square)](https://scrutinizer-ci.com/g/robsonvleite/cropper)
 [![Total Downloads](https://img.shields.io/packagist/dt/coffeecode/cropper.svg?style=flat-square)](https://packagist.org/packages/coffeecode/cropper)
 
