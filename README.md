@@ -6,7 +6,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://scrutinizer-ci.com/g/robsonvleite/cropper/badges/build.png?b=master&style=flat-square)](https://scrutinizer-ci.com/g/robsonvleite/cropper/build-status/master)
 [![Quality Score](https://img.shields.io/scrutinizer/g/robsonvleite/cropper.svg?style=flat-square)](https://scrutinizer-ci.com/g/robsonvleite/cropper)
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/coffeecode/cropper.svg?style=flat-square&colorB=6C70AA)](https://github.com/robsonvleite/uploader)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/coffeecode/cropper.svg?style=flat-square&colorB=6C70AA)](https://github.com/robsonvleite/cropper)
 [![Total Downloads](https://img.shields.io/packagist/dt/coffeecode/cropper.svg?style=flat-square)](https://packagist.org/packages/coffeecode/cropper)
 
 
