@@ -6,7 +6,9 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://scrutinizer-ci.com/g/robsonvleite/cropper/badges/build.png?b=master&style=flat-square)](https://scrutinizer-ci.com/g/robsonvleite/cropper/build-status/master)
 [![Quality Score](https://img.shields.io/scrutinizer/g/robsonvleite/cropper.svg?style=flat-square)](https://scrutinizer-ci.com/g/robsonvleite/cropper)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/symfony/symfony.svg?style=flat-square&colorB=6C70AA)](https://github.com/robsonvleite/uploader)
 [![Total Downloads](https://img.shields.io/packagist/dt/coffeecode/cropper.svg?style=flat-square)](https://packagist.org/packages/coffeecode/cropper)
+
 
 ###### Cropper is a component that simplifies the creation of JPG and PNG image thumbnails with a cache engine. Cropper CC creates your image for each part required in the application with zero complexity.
 
