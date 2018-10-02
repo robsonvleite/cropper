@@ -3,7 +3,7 @@
 namespace CoffeeCode\Cropper;
 
 /**
- * Class CoffeeCode Thumb
+ * Class CoffeeCode Cropper
  *
  * @author Robson V. Leite <https://github.com/robsonvleite>
  * @package CoffeeCode\Cropper
