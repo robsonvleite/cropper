@@ -35,7 +35,6 @@ class Cropper
      */
     private static $allowedExt = ['image/jpeg', "image/png"];
 
-
     /**
      * Cropper constructor.
      *
