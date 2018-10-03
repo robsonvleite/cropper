@@ -35,13 +35,13 @@ class Cropper
      */
     private static $allowedExt = ['image/jpeg', "image/png"];
 
+
     /**
-     * Cropper construct and cache patch
-     *
+     * Cropper constructor.
      * @param string $cachePath
      * @param int $jpgQuality
      * @param int $pngCompressor
-     * @return string
+     * @throws \Exception
      */
     public function __construct(string $cachePath, int $jpgQuality = 75, int $pngCompressor = 5)
     {
@@ -50,10 +50,9 @@ class Cropper
 
         if (!file_exists($this->cachePath) || !is_dir($this->cachePath)) {
             if (!mkdir($this->cachePath, 0755)) {
-                return "Could not create cache folder";
+                throw new \Exception("Could not create cache folder");
             }
         }
-        return $this;
     }
 
     /**
@@ -62,7 +61,7 @@ class Cropper
      * @param string $imagePath
      * @param int $width
      * @param int|null $height
-     * @return string
+     * @return null|string
      */
     function make(string $imagePath, int $width, int $height = null): ?string
     {
@@ -100,6 +99,9 @@ class Cropper
             $src_h = round($src_h / $cmp_y * $cmp_x);
             $src_y = round(($src_h - ($src_h / $cmp_y * $cmp_x))); //2
         }
+
+        $src_h = (int)$src_h;
+        $src_y = (int)$src_y;
 
         if ($this->imageMime == "image/jpeg") {
             return $this->fromJpg($width, $height, $src_x, $src_y, $src_w, $src_h);

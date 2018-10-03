@@ -19,7 +19,8 @@
   ],
   "require": {
     "php": "^7.1",
-    "ext-gd": "^7.1"
+    "ext-gd": "^7.1",
+    "ext-fileinfo":  "^7.1"
   },
   "autoload": {
     "psr-4": {
