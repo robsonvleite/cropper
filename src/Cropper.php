@@ -38,6 +38,7 @@ class Cropper
 
     /**
      * Cropper constructor.
+     *
      * @param string $cachePath
      * @param int $jpgQuality
      * @param int $pngCompressor
@@ -63,7 +64,7 @@ class Cropper
      * @param int|null $height
      * @return null|string
      */
-    function make(string $imagePath, int $width, int $height = null): ?string
+    public function make(string $imagePath, int $width, int $height = null): ?string
     {
         if (!file_exists($imagePath)) {
             return "Image not found";
@@ -100,7 +101,9 @@ class Cropper
             $src_y = round(($src_h - ($src_h / $cmp_y * $cmp_x))); //2
         }
 
+        $src_x = (int)$src_x;
         $src_h = (int)$src_h;
+        $src_y = (int)$src_y;
         $src_y = (int)$src_y;
 
         if ($this->imageMime == "image/jpeg") {
