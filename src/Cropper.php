@@ -100,12 +100,10 @@ class Cropper
 
         foreach ($scan as $file) {
             $file = "{$this->cachePath}/{$file}";
-            if ($imageName && strpos($file, $name) && is_file($file)) {
-                unlink($file);
-            }
-
-            if (!$name && is_file($file)) {
-                unlink($file);
+            if ($imageName && strpos($file, $name)) {
+                $this->imageDestroy($file);
+            } elseif (!$imageName) {
+                $this->imageDestroy($file);
             }
         }
     }
@@ -148,6 +146,16 @@ class Cropper
         }
 
         return null;
+    }
+
+    /**
+     * @param string $imagePatch
+     */
+    private function imageDestroy(string $imagePatch): void
+    {
+        if (file_exists($imagePatch) && is_file($imagePatch)) {
+            unlink($imagePatch);
+        }
     }
 
     /**
