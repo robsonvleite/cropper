@@ -83,6 +83,40 @@ class Cropper
             return "{$this->cachePath}/{$this->imageName}";
         }
 
+        return $this->fromThumb($width, $height);
+    }
+
+    /**
+     * Clear cache
+     *
+     * @param string|null $imageName
+     * @example $t->flush("images/image.jpg"); clear image name and variations size
+     * @example $t->flush(); clear all image cache folder
+     */
+    public function flush(string $imageName = null): void
+    {
+        $scan = scandir($this->cachePath);
+        $name = ($imageName ? hash("crc32", pathinfo($imageName)['basename']) : null);
+
+        foreach ($scan as $file) {
+            $file = "{$this->cachePath}/{$file}";
+            if ($imageName && strpos($file, $name) && is_file($file)) {
+                unlink($file);
+            }
+
+            if (!$name && is_file($file)) {
+                unlink($file);
+            }
+        }
+    }
+
+    /**
+     * @param int $width
+     * @param int|null $height
+     * @return null|string
+     */
+    private function fromThumb(int $width, int $height = null): ?string
+    {
         list($src_w, $src_h) = getimagesize($this->imagePath);
         $height = ($height ?? ($width * $src_h) / $src_w);
 
@@ -114,30 +148,6 @@ class Cropper
         }
 
         return null;
-    }
-
-    /**
-     * Clear cache
-     *
-     * @param string|null $imageName
-     * @example $t->flush("images/image.jpg"); clear image name and variations size
-     * @example $t->flush(); clear all image cache folder
-     */
-    public function flush(string $imageName = null): void
-    {
-        $scan = scandir($this->cachePath);
-        $name = ($imageName ? hash("crc32", pathinfo($imageName)['basename']) : null);
-
-        foreach ($scan as $file) {
-            $file = "{$this->cachePath}/{$file}";
-            if ($imageName && strpos($file, $name) && is_file($file)) {
-                unlink($file);
-            }
-
-            if (!$name && is_file($file)) {
-                unlink($file);
-            }
-        }
     }
 
     /**
