@@ -83,7 +83,7 @@ class Cropper
             return "{$this->cachePath}/{$this->imageName}";
         }
 
-        return $this->fromThumb($width, $height);
+        return $this->imageCache($width, $height);
     }
 
     /**
@@ -115,7 +115,7 @@ class Cropper
      * @param int|null $height
      * @return null|string
      */
-    private function fromThumb(int $width, int $height = null): ?string
+    private function imageCache(int $width, int $height = null): ?string
     {
         list($src_w, $src_h) = getimagesize($this->imagePath);
         $height = ($height ?? ($width * $src_h) / $src_w);
