@@ -72,7 +72,7 @@ class Cropper
         $this->imagePath = $imagePath;
         $this->imageMime = mime_content_type($this->imagePath);
         $this->imageInfo = pathinfo($this->imagePath);
-        $this->imageName = hash("crc32", $this->imageInfo['basename']) . hash("crc32",
+        $this->imageName = hash("crc32", $this->imageInfo['basename']) . date("Ymd") . hash("crc32",
                 "{$width}{$height}") . ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
 
         if (!in_array($this->imageMime, self::$allowedExt)) {
