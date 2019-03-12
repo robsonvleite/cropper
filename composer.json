@@ -18,8 +18,8 @@
     }
   ],
   "require": {
-    "php": "^7.1",
-    "ext-gd": "^7.1"
+    "php": "^7.2",
+    "ext-gd": "*"
   },
   "autoload": {
     "psr-4": {
