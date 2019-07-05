@@ -39,7 +39,6 @@ class Cropper
      * Cropper constructor.
      *
      * @param string $cachePath
-     * @param string $pathUrl
      * @param int $jpgQuality
      * @param int $pngCompressor
      * @throws \Exception
