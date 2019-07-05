@@ -51,7 +51,7 @@ class Cropper
     {
         $this->cachePath = $cachePath;
         $this->cacheSize = [$jpgQuality, $pngCompressor];
-        $this->cachePathUrl = $pathUrl;
+        $this->cachePathUrl = $pathUrl ?? $cachePath;
 
         if (!file_exists($this->cachePath) || !is_dir($this->cachePath)) {
             if (!mkdir($this->cachePath, 0755)) {
