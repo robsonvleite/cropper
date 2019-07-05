@@ -4,7 +4,7 @@
 require __DIR__ . "/../src/Cropper.php";
 
 //$thumb = new \CoffeeCode\Cropper\Cropper("cache");
-$thumb = new \CoffeeCode\Cropper\Cropper("cache", "https://www.localhost/coffeecode/cropper/example/cache");
+$thumb = new \CoffeeCode\Cropper\Cropper("cache");
 $thumb->flush();
 
 echo "<p><img src='{$thumb->make("images/image.jpg", 200)}' alt='Happy Coffe' title='Happy Coffe'></p>";

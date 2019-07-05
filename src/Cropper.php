@@ -17,9 +17,6 @@ class Cropper
     private $cacheSize;
 
     /** @var string */
-    private $cachePathUrl;
-
-    /** @var string */
     private $imagePath;
 
     /** @var string */
@@ -47,11 +44,10 @@ class Cropper
      * @param int $pngCompressor
      * @throws \Exception
      */
-    public function __construct(string $cachePath, string $pathUrl = null, int $jpgQuality = 75, int $pngCompressor = 5)
+    public function __construct(string $cachePath, int $jpgQuality = 75, int $pngCompressor = 5)
     {
         $this->cachePath = $cachePath;
         $this->cacheSize = [$jpgQuality, $pngCompressor];
-        $this->cachePathUrl = $pathUrl ?? $cachePath;
 
         if (!file_exists($this->cachePath) || !is_dir($this->cachePath)) {
             if (!mkdir($this->cachePath, 0755)) {
@@ -85,7 +81,7 @@ class Cropper
         }
 
         if (file_exists("{$this->cachePath}/{$this->imageName}") && is_file("{$this->cachePath}/{$this->imageName}")) {
-            return "{$this->cachePathUrl}/{$this->imageName}";
+            return "{$this->cachePath}/{$this->imageName}";
         }
 
         return $this->imageCache($width, $height);
@@ -182,7 +178,7 @@ class Cropper
         imagedestroy($thumb);
         imagedestroy($source);
 
-        return "{$this->cachePathUrl}/{$this->imageName}";
+        return "{$this->cachePath}/{$this->imageName}";
     }
 
     /**
@@ -207,6 +203,6 @@ class Cropper
         imagedestroy($thumb);
         imagedestroy($source);
 
-        return "{$this->cachePathUrl}/{$this->imageName}";
+        return "{$this->cachePath}/{$this->imageName}";
     }
 }

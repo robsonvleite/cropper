@@ -59,21 +59,6 @@ echo "<img src='{$c->make("images/image.jpg", 500)}' alt='Happy Coffee' title='H
 echo "<img src='{$c->make("images/image.jpg", 500, 300)}' alt='Happy Coffee' title='Happy Coffee'>";
 ```
 
-#### Construct variation
-```php
-<?php
-require __DIR__ . "/../src/Cropper.php";
-
-//Patch to cash
-$c = new \CoffeeCode\Cropper\Cropper("patch/to/cache");
-
-//Patch to cash | URL to image on cash
-$c = new \CoffeeCode\Cropper\Cropper("patch/to/cache", "https://yoursite.com/patch/to/cache");
-
-//Patch to cash | URL to image on cash | JPG quality | PNG quality
-$c = new \CoffeeCode\Cropper\Cropper("patch/to/cache", "https://yoursite.com/patch/to/cache", 75, 5);
-```
-
 #### Clear cache
 
 ```php
