@@ -28,6 +28,8 @@ class Cropper
     /** @var string */
     private $imageInfo;
 
+    /** @var bool */
+    private $imageNameisHash;
     /**
      * Allow jpg and png to thumb and cache generate
      *
@@ -63,17 +65,19 @@ class Cropper
      * @param int|null $height
      * @return null|string
      */
-    public function make(string $imagePath, int $width, int $height = null): ?string
+    public function make(string $imagePath, int $width, int $height = null, bool $isHash = true): ?string
     {
         if (!file_exists($imagePath)) {
             return "Image not found";
         }
 
+        $this->imageNameisHash = $isHash;
+
         $this->imagePath = $imagePath;
         $this->imageMime = mime_content_type($this->imagePath);
         $this->imageInfo = pathinfo($this->imagePath);
-        $this->imageName = hash("crc32", $this->imageInfo['basename']) . date("Ymd") . hash("crc32",
-                "{$width}{$height}") . ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
+
+        $this->imageName($width, $height);
 
         if (!in_array($this->imageMime, self::$allowedExt)) {
             return "Not a valid JPG or PNG image";
@@ -106,6 +110,23 @@ class Cropper
                 $this->imageDestroy($file);
             }
         }
+    }
+
+    /**
+     * @param int $width
+     * @param int|null $height
+     */
+    private function imageName(int $width, int $height = null): void
+    {
+        if ($this->imageNameisHash) {
+            $this->imageName = hash("crc32", $this->imageInfo['basename']) . date("Ymd") . hash("crc32",
+                    "{$width}{$height}") . ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");;
+            return;
+        }
+
+        $this->imageName = $this->imageInfo['filename'] . '-' . $width .
+            ($height ? '-' . $height : "") .
+            ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
     }
 
     /**
