@@ -125,7 +125,7 @@ class Cropper
         }
 
         $this->imageName = $this->imageInfo['filename'] . '-' . $width .
-            ($height ? '-' . $height : "") .
+            ($height ? '-' . $height : "") . date("-Ymdhsi") .
             ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
     }
 
