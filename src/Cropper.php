@@ -72,18 +72,36 @@ class Cropper
         $this->imagePath = $imagePath;
         $this->imageMime = mime_content_type($this->imagePath);
         $this->imageInfo = pathinfo($this->imagePath);
-        $this->imageName = hash("crc32", $this->imageInfo['basename']) . date("Ymd") . hash("crc32",
-                "{$width}{$height}") . ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
 
         if (!in_array($this->imageMime, self::$allowedExt)) {
             return "Not a valid JPG or PNG image";
         }
 
+        $this->imageName = $this->name($this->imagePath, $width, $height);
         if (file_exists("{$this->cachePath}/{$this->imageName}") && is_file("{$this->cachePath}/{$this->imageName}")) {
             return "{$this->cachePath}/{$this->imageName}";
         }
 
         return $this->imageCache($width, $height);
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    protected function name(string $name, int $width, int $height = null): string
+    {
+        $name = filter_var(mb_strtolower($name), FILTER_SANITIZE_STRIPPED);
+        $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
+        $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                 ';
+        $named = substr($name, 0, strrpos($name, "."));
+        $name = str_replace(["-----", "----", "---", "--"], "-",
+            str_replace(" ", "-", trim(strtr(utf8_decode($named), utf8_decode($formats), $replace))));
+
+        $ext = ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
+        $heightName = ($height ? "h{$height}" : "");
+
+        return "{$name}-w{$width}{$heightName}.{$ext}";
     }
 
     /**
