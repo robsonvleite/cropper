@@ -20,6 +20,7 @@
   "require": {
     "php": "^7.2",
     "ext-gd": "*",
+    "ext-mbstring": "*",
     "ext-fileinfo": "*"
   },
   "autoload": {

@@ -91,16 +91,16 @@ class Cropper
      */
     protected function name(string $name, int $width, int $height = null): string
     {
-        $name = filter_var(mb_strtolower(pathinfo($name)["filename"]), FILTER_SANITIZE_STRIPPED);
+        $filterName = filter_var(mb_strtolower(pathinfo($name)["filename"]), FILTER_SANITIZE_STRIPPED);
         $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
         $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                 ';
-        $name = str_replace(["-----", "----", "---", "--"], "-",
-            str_replace(" ", "-", trim(strtr(utf8_decode($name), utf8_decode($formats), $replace))));
+        $trimName = trim(strtr(utf8_decode($filterName), utf8_decode($formats), $replace));
+        $name = str_replace(["-----", "----", "---", "--"], "-", str_replace(" ", "-", $trimName));
 
         $ext = ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
         $heightName = ($height ? "x{$height}" : "");
 
-        return "{$name}-{$width}{$heightName}.{$ext}";
+        return "{$name}-{$width}{$heightName}{$ext}";
     }
 
     /**
