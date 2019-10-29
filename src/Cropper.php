@@ -89,7 +89,7 @@ class Cropper
      * @param string $name
      * @return string
      */
-    protected function name(string $name, int $width, int $height = null): string
+    protected function name(string $name, int $width = null, int $height = null): string
     {
         $filterName = filter_var(mb_strtolower(pathinfo($name)["filename"]), FILTER_SANITIZE_STRIPPED);
         $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
@@ -97,29 +97,37 @@ class Cropper
         $trimName = trim(strtr(utf8_decode($filterName), utf8_decode($formats), $replace));
         $name = str_replace(["-----", "----", "---", "--"], "-", str_replace(" ", "-", $trimName));
 
+        $hash = $this->hash($this->imagePath);
         $ext = ($this->imageMime == "image/jpeg" ? ".jpg" : ".png");
+        $widthName = ($width ? "-{$width}" : "");
         $heightName = ($height ? "x{$height}" : "");
 
-        return "{$name}-{$width}{$heightName}{$ext}";
+        return "{$name}{$widthName}{$heightName}-{$hash}{$ext}";
+    }
+
+    /**
+     * @param string $path
+     * @return string
+     */
+    protected function hash(string $path): string
+    {
+        return hash("crc32", $path);
     }
 
     /**
      * Clear cache
      *
-     * @param string|null $imageName
+     * @param string|null $imagePath
      * @example $t->flush("images/image.jpg"); clear image name and variations size
      * @example $t->flush(); clear all image cache folder
      */
-    public function flush(string $imageName = null): void
+    public function flush(string $imagePath = null): void
     {
-        $scan = scandir($this->cachePath);
-        $name = ($imageName ? hash("crc32", pathinfo($imageName)['basename']) : null);
-
-        foreach ($scan as $file) {
+        foreach (scandir($this->cachePath) as $file) {
             $file = "{$this->cachePath}/{$file}";
-            if ($imageName && strpos($file, $name)) {
+            if ($imagePath && strpos($file, $this->hash($imagePath))) {
                 $this->imageDestroy($file);
-            } elseif (!$imageName) {
+            } elseif (!$imagePath) {
                 $this->imageDestroy($file);
             }
         }
