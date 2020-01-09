@@ -33,7 +33,7 @@ class Cropper
      *
      * @var array allowed media types
      */
-    private static $allowedExt = ['image/jpeg', "image/png"];
+    private static $allowedExt = ['image/jpeg', "image/png", "image/webp"];
 
     /**
      * Cropper constructor.
@@ -169,6 +169,10 @@ class Cropper
         if ($this->imageMime == "image/png") {
             return $this->fromPng($width, $height, $src_x, $src_y, $src_w, $src_h);
         }
+        
+        if ($this->imageMime == "image/webp") {
+            return $this->fromWebp($width, $height, $src_x, $src_y, $src_w, $src_h);
+        }
 
         return null;
     }
@@ -223,6 +227,22 @@ class Cropper
         imagesavealpha($thumb, true);
         imagecopyresized($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
         imagepng($thumb, "{$this->cachePath}/{$this->imageName}", $this->cacheSize[1]);
+
+        imagedestroy($thumb);
+        imagedestroy($source);
+
+        return "{$this->cachePath}/{$this->imageName}";
+    }
+    
+    private function fromWebp(int $width, int $height, int $src_x, int $src_y, int $src_w, int $src_h): string
+    {
+        $thumb = imagecreatetruecolor($width, $height);
+        $source = imagecreatefromwebp($this->imagePath);
+
+        imagealphablending($thumb, false);
+        imagesavealpha($thumb, true);
+        imagecopyresized($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
+        imagewebp($thumb, "{$this->cachePath}/{$this->imageName}", $this->cacheSize[1]);
 
         imagedestroy($thumb);
         imagedestroy($source);
