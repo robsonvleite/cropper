@@ -111,7 +111,7 @@ class Cropper
      */
     protected function hash(string $path): string
     {
-        return hash("crc32", $path);
+        return hash("crc32", pathinfo($path)['basename']);
     }
 
     /**
