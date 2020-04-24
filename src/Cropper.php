@@ -49,7 +49,7 @@ class Cropper
         $this->cacheSize = [$jpgQuality, $pngCompressor];
 
         if (!file_exists($this->cachePath) || !is_dir($this->cachePath)) {
-            if (!mkdir($this->cachePath, 0755)) {
+            if (!mkdir($this->cachePath, 0755, true)) {
                 throw new \Exception("Could not create cache folder");
             }
         }
