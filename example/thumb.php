@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "/../src/Cropper.php";
+require "../vendor/autoload.php";
 
 $thumb = new \CoffeeCode\Cropper\Cropper("cache");
 $thumb->flush();

@@ -13,8 +13,11 @@ class Cropper
     /** @var string */
     private $cachePath;
 
-    /** @var array */
-    private $cacheSize;
+    /** @var int */
+    private $jpgSize;
+
+    /** @var int */
+    private $pngSize;
 
     /** @var string */
     private $imagePath;
@@ -24,9 +27,6 @@ class Cropper
 
     /** @var string */
     private $imageMime;
-
-    /** @var string */
-    private $imageInfo;
 
     /**
      * Allow jpg and png to thumb and cache generate
@@ -46,7 +46,8 @@ class Cropper
     public function __construct(string $cachePath, int $jpgQuality = 75, int $pngCompressor = 5)
     {
         $this->cachePath = $cachePath;
-        $this->cacheSize = [$jpgQuality, $pngCompressor];
+        $this->jpgSize = $jpgQuality;
+        $this->pngSize = $pngCompressor;
 
         if (!file_exists($this->cachePath) || !is_dir($this->cachePath)) {
             if (!mkdir($this->cachePath, 0755, true)) {
@@ -196,8 +197,9 @@ class Cropper
     {
         $thumb = imagecreatetruecolor($width, $height);
         $source = imagecreatefromjpeg($this->imagePath);
+
         imagecopyresampled($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
-        imagejpeg($thumb, "{$this->cachePath}/{$this->imageName}", $this->cacheSize[0]);
+        imagejpeg($thumb, "{$this->cachePath}/{$this->imageName}", $this->jpgSize);
 
         imagedestroy($thumb);
         imagedestroy($source);
@@ -222,7 +224,9 @@ class Cropper
         imagealphablending($thumb, false);
         imagesavealpha($thumb, true);
         imagecopyresampled($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
-        imagepng($thumb, "{$this->cachePath}/{$this->imageName}", $this->cacheSize[1]);
+        imagepng($thumb, "{$this->cachePath}/{$this->imageName}", $this->pngSize);
+
+        imagewebp($thumb, "{$this->cachePath}/{$this->imageName}", "70");
 
         imagedestroy($thumb);
         imagedestroy($source);
