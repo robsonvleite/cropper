@@ -32,7 +32,7 @@ CoffeeCode é um conjunto de pequenos e otimizados componentes PHP para tarefas 
 Cropper is available via Composer:
 
 ```bash
-"coffeecode/cropper": "^1.0"
+"coffeecode/cropper": "^1.2"
 ```
 
 or run

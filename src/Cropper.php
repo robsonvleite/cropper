@@ -196,7 +196,7 @@ class Cropper
     {
         $thumb = imagecreatetruecolor($width, $height);
         $source = imagecreatefromjpeg($this->imagePath);
-        imagecopyresized($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
+        imagecopyresampled($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
         imagejpeg($thumb, "{$this->cachePath}/{$this->imageName}", $this->cacheSize[0]);
 
         imagedestroy($thumb);
@@ -221,7 +221,7 @@ class Cropper
 
         imagealphablending($thumb, false);
         imagesavealpha($thumb, true);
-        imagecopyresized($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
+        imagecopyresampled($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
         imagepng($thumb, "{$this->cachePath}/{$this->imageName}", $this->cacheSize[1]);
 
         imagedestroy($thumb);
