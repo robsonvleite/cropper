@@ -226,8 +226,6 @@ class Cropper
         imagecopyresampled($thumb, $source, 0, 0, $src_x, $src_y, $width, $height, $src_w, $src_h);
         imagepng($thumb, "{$this->cachePath}/{$this->imageName}", $this->pngSize);
 
-        imagewebp($thumb, "{$this->cachePath}/{$this->imageName}", "70");
-
         imagedestroy($thumb);
         imagedestroy($source);
 
