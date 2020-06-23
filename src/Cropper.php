@@ -103,6 +103,8 @@ class Cropper
 
     /**
      * @param string $name
+     * @param int $width
+     * @param int $height
      * @return string
      */
     protected function name(string $name, int $width = null, int $height = null): string
@@ -256,8 +258,8 @@ class Cropper
 
     public function toWebP($image): string
     {
-        $webPConverted = pathinfo($image)["dirname"] . "/" . pathinfo($image)["filename"] . ".webp";
         try {
+            $webPConverted = pathinfo($image)["dirname"] . "/" . pathinfo($image)["filename"] . ".webp";
             WebPConvert::convert($image, $webPConverted, ["default-quality" => $this->quality]);
             unlink($image);
             return $webPConverted;
