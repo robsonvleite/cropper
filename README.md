@@ -13,6 +13,12 @@
 
 Cropper é um componente que simplifica a criação de miniaturas de imagens JPG e PNG com um motor de cache. O Cropper CC cria versões de suas imagens para cada dimensão necessária na aplicação com zero de complexidade.
 
+####WEBP THUMBNAILS:
+
+Published in version 1.3.* by default how thumbnails are converted to webP.
+
+Adicionado na versão 1.3.* por padrão as miniaturas são convertidas para webP.
+
 ## About CoffeeCode
 
 ###### CoffeeCode is a set of small and optimized PHP components for common tasks. Held by Robson V. Leite and the UpInside team. With them you perform routine tasks with fewer lines, writing less and doing much more.
@@ -32,7 +38,7 @@ CoffeeCode é um conjunto de pequenos e otimizados componentes PHP para tarefas 
 Cropper is available via Composer:
 
 ```bash
-"coffeecode/cropper": "1.2.*"
+"coffeecode/cropper": "1.3.*"
 ```
 
 or run
