@@ -86,6 +86,16 @@ class Cropper
             return "Not a valid JPG or PNG image";
         }
 
+        return $this->image($width, $height);
+    }
+
+    /**
+     * @param int $width
+     * @param int|null $height
+     * @return string|null
+     */
+    private function image(int $width, int $height = null): ?string
+    {
         $imageWebP = "{$this->cachePath}/{$this->imageName}.webp";
         $imageExt = "{$this->cachePath}/{$this->imageName}." . pathinfo($this->imagePath)['extension'];
 
@@ -255,12 +265,21 @@ class Cropper
         return "{$this->cachePath}/{$this->imageName}.png";
     }
 
-    public function toWebP($image): string
+    /**
+     * @param string $image
+     * @param bool $unlinkImage
+     * @return string
+     */
+    public function toWebP(string $image, $unlinkImage = true): string
     {
         try {
             $webPConverted = pathinfo($image)["dirname"] . "/" . pathinfo($image)["filename"] . ".webp";
             WebPConvert::convert($image, $webPConverted, ["default-quality" => $this->quality]);
-            unlink($image);
+
+            if ($unlinkImage) {
+                unlink($image);
+            }
+
             return $webPConverted;
         } catch (ConversionFailedException $exception) {
             return $image;

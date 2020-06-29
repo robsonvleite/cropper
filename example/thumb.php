@@ -3,7 +3,7 @@
 require "../vendor/autoload.php";
 
 $thumb = new \CoffeeCode\Cropper\Cropper("cache", 75, 5, true);
-$thumb->flush();
+//$thumb->flush();
 
 echo "<p><img src='{$thumb->make("images/image.jpg", 200)}' alt='Happy Coffe' title='Happy Coffe'></p>";
 echo "<p><img src='{$thumb->make("images/image.jpg", 400)}' alt='Happy Coffe' title='Happy Coffe'></p>";
