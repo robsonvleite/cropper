@@ -81,14 +81,14 @@ class Cropper
         $this->imagePath = $imagePath;
         $this->imageName = $this->name($this->imagePath, $width, $height);
         $this->imageMime = mime_content_type($this->imagePath);
-        $this->imageInfo = pathinfo($this->imagePath);
 
         if (!in_array($this->imageMime, self::$allowedExt)) {
             return "Not a valid JPG or PNG image";
         }
 
+        $imageInfo = pathinfo($this->imagePath);
         $imageWebP = "{$this->cachePath}/{$this->imageName}.webp";
-        $imageExt = "{$this->cachePath}/{$this->imageName}.{$this->imageInfo['extension']}";
+        $imageExt = "{$this->cachePath}/{$this->imageName}.{$imageInfo['extension']}";
 
         if ($this->webP && file_exists($imageWebP) && is_file($imageWebP)) {
             return $imageWebP;
