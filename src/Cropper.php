@@ -50,7 +50,7 @@ class Cropper
      * @param bool $webP
      * @throws Exception
      */
-    public function __construct(string $cachePath, int $quality = 75, int $compressor = 5, bool $webP = true)
+    public function __construct(string $cachePath, int $quality = 75, int $compressor = 5, bool $webP = false)
     {
         $this->cachePath = $cachePath;
         $this->quality = $quality;
