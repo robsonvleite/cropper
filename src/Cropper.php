@@ -86,9 +86,8 @@ class Cropper
             return "Not a valid JPG or PNG image";
         }
 
-        $imageInfo = pathinfo($this->imagePath);
         $imageWebP = "{$this->cachePath}/{$this->imageName}.webp";
-        $imageExt = "{$this->cachePath}/{$this->imageName}.{$imageInfo['extension']}";
+        $imageExt = "{$this->cachePath}/{$this->imageName}." . pathinfo($this->imagePath)['extension'];
 
         if ($this->webP && file_exists($imageWebP) && is_file($imageWebP)) {
             return $imageWebP;
