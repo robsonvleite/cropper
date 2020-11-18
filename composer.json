@@ -26,6 +26,7 @@
     "ext-gd": "*",
     "ext-mbstring": "*",
     "ext-fileinfo": "*",
+    "ext-imagick": "*",
     "rosell-dk/webp-convert": "2.3.2"
   },
   "autoload": {
