@@ -43,6 +43,8 @@ class Cropper
 
     /**
      * Cropper constructor.
+     * compressor must be 1-9
+     * quality must be 1-100
      *
      * @param string $cachePath
      * @param int $quality
