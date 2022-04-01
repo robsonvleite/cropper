@@ -15,31 +15,31 @@ use WebPConvert\WebPConvert;
 class Cropper
 {
     /** @var string */
-    private $cachePath;
+    private string $cachePath;
 
     /** @var string */
-    private $imagePath;
+    private string $imagePath;
 
     /** @var string */
-    private $imageName;
+    private string $imageName;
 
     /** @var string */
-    private $imageMime;
+    private string $imageMime;
 
     /** @var int */
-    private $quality;
+    private int $quality;
 
     /** @var int */
-    private $compressor;
+    private int $compressor;
 
     /**@var bool */
-    private $webP;
+    private bool $webP;
 
     /**
      * Allow jpg and png to thumb and cache generate
      * @var array allowed media types
      */
-    private static $allowedExt = ['image/jpeg', "image/png"];
+    private static array $allowedExt = ['image/jpeg', "image/png"];
 
     /**
      * Cropper constructor.
@@ -114,13 +114,13 @@ class Cropper
 
     /**
      * @param string $name
-     * @param int $width
-     * @param int $height
+     * @param int|null $width
+     * @param int|null $height
      * @return string
      */
     protected function name(string $name, int $width = null, int $height = null): string
     {
-        $filterName = filter_var(mb_strtolower(pathinfo($name)["filename"]), FILTER_SANITIZE_STRIPPED);
+        $filterName = filter_var(mb_strtolower(pathinfo($name)["filename"]), FILTER_UNSAFE_RAW);
         $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
         $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                 ';
         $trimName = trim(strtr(utf8_decode($filterName), utf8_decode($formats), $replace));
@@ -185,10 +185,11 @@ class Cropper
             $src_y = round(($src_h - ($src_h / $cmp_y * $cmp_x))); //2
         }
 
+        $height = (int)$height;
         $src_x = (int)$src_x;
+        $src_y = (int)$src_y;
+        $src_w = (int)$src_w;
         $src_h = (int)$src_h;
-        $src_y = (int)$src_y;
-        $src_y = (int)$src_y;
 
         if ($this->imageMime == "image/jpeg") {
             return $this->fromJpg($width, $height, $src_x, $src_y, $src_w, $src_h);
@@ -283,7 +284,7 @@ class Cropper
             }
 
             return $webPConverted;
-        } catch (ConversionFailedException $exception) {
+        } catch (ConversionFailedException) {
             return $image;
         }
     }
