@@ -284,7 +284,7 @@ class Cropper
             }
 
             return $webPConverted;
-        } catch (ConversionFailedException) {
+        } catch (ConversionFailedException $exception) {
             return $image;
         }
     }
