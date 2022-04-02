@@ -41,6 +41,9 @@ class Cropper
      */
     private static array $allowedExt = ['image/jpeg', "image/png"];
 
+    /** @var ConversionFailedException */
+    public ConversionFailedException $exception;
+
     /**
      * Cropper constructor.
      * compressor must be 1-9
@@ -285,6 +288,7 @@ class Cropper
 
             return $webPConverted;
         } catch (ConversionFailedException $exception) {
+            $this->exception = $exception;
             return $image;
         }
     }
