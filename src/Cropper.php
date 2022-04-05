@@ -181,11 +181,11 @@ class Cropper
         $cmp_y = $src_h / $height;
 
         if ($cmp_x > $cmp_y) {
+            $src_x = round(($src_w - ($src_w / $cmp_x * $cmp_y)) / 2);
             $src_w = round($src_w / $cmp_x * $cmp_y);
-            $src_x = round(($src_w - ($src_w / $cmp_x * $cmp_y))); //2
         } elseif ($cmp_y > $cmp_x) {
+            $src_y = round(($src_h - ($src_h / $cmp_y * $cmp_x)) / 2);
             $src_h = round($src_h / $cmp_y * $cmp_x);
-            $src_y = round(($src_h - ($src_h / $cmp_y * $cmp_x))); //2
         }
 
         $height = (int)$height;
