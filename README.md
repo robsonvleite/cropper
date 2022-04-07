@@ -5,7 +5,6 @@
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/coffeecode/cropper.svg?style=flat-square)](https://packagist.org/packages/coffeecode/cropper)
 [![Latest Version](https://img.shields.io/github/release/robsonvleite/cropper.svg?style=flat-square)](https://github.com/robsonvleite/cropper/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Build](https://img.shields.io/scrutinizer/build/g/robsonvleite/cropper.svg?style=flat-square)](https://scrutinizer-ci.com/g/robsonvleite/cropper)
 [![Quality Score](https://img.shields.io/scrutinizer/g/robsonvleite/cropper.svg?style=flat-square)](https://scrutinizer-ci.com/g/robsonvleite/cropper)
 [![Total Downloads](https://img.shields.io/packagist/dt/coffeecode/cropper.svg?style=flat-square)](https://packagist.org/packages/coffeecode/cropper)
 
@@ -57,7 +56,6 @@ São apenas dois métodos para fazer todo o trabalho. Você só precisa chamar o
 
 ```php
 <?php
-require __DIR__ . "/../src/Cropper.php";
 
 $c = new \CoffeeCode\Cropper\Cropper("patch/to/cache");
 
@@ -69,7 +67,6 @@ echo "<img src='{$c->make("images/image.jpg", 500, 300)}' alt='Happy Coffee' tit
 
 ```php
 <?php
-require __DIR__ . "/../src/Cropper.php";
 
 $c = new \CoffeeCode\Cropper\Cropper("patch/to/cache");
 
