@@ -127,7 +127,7 @@ class Cropper
         $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
         $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyrr                                 ';
         $trimName = trim(strtr(
-            mb_convert_encoding($name, "ISO-8859-1", "UTF-8"),
+            mb_convert_encoding($filterName, "ISO-8859-1", "UTF-8"),
             mb_convert_encoding($formats, "ISO-8859-1", "UTF-8"), $replace));
         $name = str_replace(["-----", "----", "---", "--"], "-", str_replace(" ", "-", $trimName));
 
