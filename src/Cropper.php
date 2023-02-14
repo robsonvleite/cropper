@@ -123,10 +123,12 @@ class Cropper
      */
     protected function name(string $name, int $width = null, int $height = null): string
     {
-        $filterName = filter_var(mb_strtolower(pathinfo($name)["filename"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
+        $filterName = mb_convert_encoding(htmlspecialchars(mb_strtolower(pathinfo($name)["filename"])), 'ISO-8859-1',
+            'UTF-8');
+        $formats = mb_convert_encoding('ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª',
+            'ISO-8859-1', 'UTF-8');
         $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyrr                                 ';
-        $trimName = trim(strtr(utf8_decode($filterName), utf8_decode($formats), $replace));
+        $trimName = trim(strtr($filterName, $formats, $replace));
         $name = str_replace(["-----", "----", "---", "--"], "-", str_replace(" ", "-", $trimName));
 
         $hash = $this->hash($this->imagePath);
